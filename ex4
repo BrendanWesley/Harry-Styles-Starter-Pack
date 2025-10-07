@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Styles Community - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f1eb, #e8dcc6, #d4c4a8, #c7b299);
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            color: #5d4e37;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 3px solid #8b7355;
+        }
+
+        h1 {
+            color: #8b7355;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b5b47;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5d4e37;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .required {
+            color: #d9534f;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="url"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #c7b299;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Arial', sans-serif;
+            transition: border-color 0.3s ease;
+            background: #fdfcfb;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #8b7355;
+            box-shadow: 0 0 5px rgba(139,115,85,0.3);
+        }
+
+        .error {
+            color: #d9534f;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        input.invalid,
+        select.invalid,
+        textarea.invalid {
+            border-color: #d9534f;
+            background: #fff5f5;
+        }
+
+        input.valid,
+        select.valid,
+        textarea.valid {
+            border-color: #5cb85c;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .btn-submit {
+            background: #8b7355;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            box-shadow: 0 5px 15px rgba(139,115,85,0.3);
+        }
+
+        .btn-submit:hover {
+            background: #6b5b47;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139,115,85,0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c3e6cb;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .char-count {
+            font-size: 0.9em;
+            color: #6b5b47;
+            text-align: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HARRY STYLES COMMUNITY</h1>
+        <p class="subtitle">Join the community and stay updated on tour dates, merch drops & exclusive content</p>
+
+        <form id="registrationForm" novalidate>
+            <!-- 1. Full Name (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                <div class="error" id="fullNameError">Please enter a valid name (minimum 3 characters, letters only)</div>
+            </div>
+
+            <!-- 2. Email (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="text" id="email" name="email" placeholder="your.email@example.com">
+                <div class="error" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <!-- 3. Phone Number (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="text" id="phone" name="phone" placeholder="+91 1234567890">
+                <div class="error" id="phoneError">Please enter a valid 10-digit phone number</div>
+            </div>
+
+            <!-- 4. Age (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="age">Age <span class="required">*</span></label>
+                <input type="text" id="age" name="age" placeholder="Enter your age">
+                <div class="error" id="ageError">Age must be between 13 and 100</div>
+            </div>
+
+            <!-- 5. Username (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="username">Choose Username <span class="required">*</span></label>
+                <input type="text" id="username" name="username" placeholder="harryfan123">
+                <div class="error" id="usernameError">Username must be 5-15 characters (alphanumeric only)</div>
+            </div>
+
+            <!-- 6. Password (JavaScript Validation) -->
+            <!-- 6. Password (JavaScript Validation) -->
+<!-- 6. Password (JavaScript Validation) -->
+<div class="form-group">
+    <label for="password">Password <span class="required">*</span></label>
+    <input type="password" id="password" name="password" placeholder="Create a strong password">
+    <div class="error" id="passwordError">Password must be at least 8 characters with uppercase, lowercase, number, and special character</div>
+</div>
+
+<!-- 7. Confirm Password (JavaScript Validation) -->
+<div class="form-group">
+    <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password">
+    <div class="error" id="confirmPasswordError">Passwords do not match</div>
+</div>
+
+<!-- Show/Hide Password Checkbox -->
+<div class="form-group">
+    <label>
+        <input type="checkbox" id="showPassword"> Show Password
+    </label>
+</div>
+
+
+
+            <!-- 7. Confirm Password (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password">
+                <div class="error" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+
+            <!-- 8. Favorite Album (JavaScript Validation) -->
+            <div class="form-group">
+                <label for="favoriteAlbum">Favorite Album <span class="required">*</span></label>
+                <select id="favoriteAlbum" name="favoriteAlbum">
+                    <option value="">-- Select an album --</option>
+                    <option value="harry-styles">Harry Styles (2017)</option>
+                    <option value="fine-line">Fine Line (2019)</option>
+                    <option value="harrys-house">Harry's House (2022)</option>
+                </select>
+                <div class="error" id="favoriteAlbumError">Please select your favorite album</div>
+            </div>
+
+            <!-- 9. Birth Date (HTML5 Validation) -->
+            <div class="form-group">
+                <label for="birthDate">Date of Birth <span class="required">*</span></label>
+                <input type="date" id="birthDate" name="birthDate" required max="2012-01-01">
+            </div>
+
+            <!-- 10. Instagram Handle (HTML5 Validation - URL pattern) -->
+            <div class="form-group">
+                <label for="instagram">Instagram Handle</label>
+                <input type="text" id="instagram" name="instagram" placeholder="@yourusername" pattern="^@?[a-zA-Z0-9._]{1,30}$" title="Enter a valid Instagram handle">
+            </div>
+
+            <!-- 11. How did you discover Harry? (HTML5 Validation - Required) -->
+            <div class="form-group">
+                <label for="discovery">How did you discover Harry Styles? <span class="required">*</span></label>
+                <select id="discovery" name="discovery" required>
+                    <option value="">-- Select an option --</option>
+                    <option value="one-direction">One Direction Era</option>
+                    <option value="dunkirk">Dunkirk Movie</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="radio">Radio/Music Streaming</option>
+                    <option value="friend">Friend Recommendation</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- 12. Concert Tickets (HTML5 Validation - Number with min/max) -->
+            <div class="form-group">
+                <label for="tickets">How many concerts have you attended?</label>
+                <input type="number" id="tickets" name="tickets" min="0" max="50" value="0" placeholder="0">
+            </div>
+
+            <!-- 13. Favorite Song (HTML5 Validation - Required, minlength) -->
+            <div class="form-group">
+                <label for="favoriteSong">Favorite Harry Styles Song <span class="required">*</span></label>
+                <input type="text" id="favoriteSong" name="favoriteSong" required minlength="2" maxlength="50" placeholder="e.g., Watermelon Sugar">
+            </div>
+
+            <!-- 14. Newsletter Subscription (HTML5 Validation - Checkbox required) -->
+            <div class="form-group">
+                <label>Newsletter Preferences <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="newsletter" value="tour-dates" required>
+                        Tour Dates & Events
+                    </label>
+                    <label>
+                        <input type="checkbox" name="newsletter" value="merch">
+                        Merchandise Releases
+                    </label>
+                    <label>
+                        <input type="checkbox" name="newsletter" value="music">
+                        New Music Releases
+                    </label>
+                </div>
+            </div>
+
+            <!-- 15. Why do you love Harry? (HTML5 Validation - Required, maxlength) -->
+            <div class="form-group">
+                <label for="message">Why do you love Harry Styles? <span class="required">*</span></label>
+                <textarea id="message" name="message" required maxlength="500" placeholder="Share your thoughts..."></textarea>
+                <div class="char-count"><span id="charCount">0</span>/500 characters</div>
+            </div>
+
+            <button type="submit" class="btn-submit">Register Now</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            Welcome to the Harry Styles Community! We'll send you updates soon.
+        </div>
+    </div>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Get elements
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const passwordError = document.getElementById("passwordError");
+    const confirmPasswordError = document.getElementById("confirmPasswordError");
+    const age = document.getElementById("age");
+    const ageError = document.getElementById("ageError");
+    const birthDate = document.getElementById("birthDate");
+    const phone = document.getElementById("phone");
+    const phoneError = document.getElementById("phoneError");
+
+    let isValid = true;
+
+    // 1. Phone validation (10 digits)
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone.value.trim())) {
+        phone.classList.add("invalid");
+        phone.classList.remove("valid");
+        phoneError.textContent = "Please enter a valid 10-digit phone number.";
+        phoneError.classList.add("show");
+        isValid = false;
+    } else {
+        phone.classList.remove("invalid");
+        phone.classList.add("valid");
+        phoneError.classList.remove("show");
+    }
+
+    // 2. Password strength
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    if (!passwordRegex.test(password.value)) {
+        password.classList.add("invalid");
+        password.classList.remove("valid");
+        passwordError.textContent =
+            "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.";
+        passwordError.classList.add("show");
+        isValid = false;
+    } else {
+        password.classList.remove("invalid");
+        password.classList.add("valid");
+        passwordError.classList.remove("show");
+    }
+
+    // 3. Confirm password match
+    if (password.value !== confirmPassword.value || confirmPassword.value === "") {
+        confirmPassword.classList.add("invalid");
+        confirmPassword.classList.remove("valid");
+        confirmPasswordError.textContent = "Passwords do not match.";
+        confirmPasswordError.classList.add("show");
+        isValid = false;
+    } else {
+        confirmPassword.classList.remove("invalid");
+        confirmPassword.classList.add("valid");
+        confirmPasswordError.classList.remove("show");
+    }
+
+    // 4. Age check (≥13)
+    let userAge = parseInt(age.value, 10);
+    if (birthDate.value) {
+        const birth = new Date(birthDate.value);
+        const today = new Date();
+        userAge = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+            userAge--;
+        }
+    }
+
+    if (isNaN(userAge) || userAge < 13) {
+        age.classList.add("invalid");
+        age.classList.remove("valid");
+        ageError.textContent = "You must be at least 13 years old.";
+        ageError.classList.add("show");
+        isValid = false;
+    } else {
+        age.classList.remove("invalid");
+        age.classList.add("valid");
+        ageError.classList.remove("show");
+    }
+
+    // 5. Show success message if everything valid
+    if (isValid) {
+        document.getElementById("successMessage").style.display = "block";
+    } else {
+        document.getElementById("successMessage").style.display = "none";
+    }
+});
+
+// 6. Show/hide password toggle
+document.getElementById("showPassword").addEventListener("change", function () {
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    if (this.checked) {
+        password.type = "text";
+        confirmPassword.type = "text";
+    } else {
+        password.type = "password";
+        confirmPassword.type = "password";
+    }
+});
+</script>
+
+
+
+
+</body>
+</html>
